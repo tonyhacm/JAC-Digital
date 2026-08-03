@@ -1,1 +1,166 @@
 
+/* ===========================
+   JAC Digital
+   script.js
+=========================== */
+
+// Animación de aparición
+const observer = new IntersectionObserver((entries) => {
+
+entries.forEach(entry => {
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
+
+});
+
+},{threshold:0.15});
+
+document.querySelectorAll(".service-card,.portfolio-card,.plan-card").forEach(el=>{
+
+observer.observe(el);
+
+});
+
+// WhatsApp flotante
+
+const whatsapp=document.createElement("a");
+
+whatsapp.href="https://wa.me/573164058253";
+
+whatsapp.target="_blank";
+
+whatsapp.className="floating-whatsapp";
+
+whatsapp.innerHTML="💬";
+
+document.body.appendChild(whatsapp);
+
+// Formulario
+
+const form=document.getElementById("contactForm");
+
+if(form){
+
+form.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const nombre=form.querySelector('input[type="text"]').value;
+
+const correo=form.querySelector('input[type="email"]').value;
+
+const mensaje=form.querySelector("textarea").value;
+
+const texto=
+
+`Hola JAC Digital.
+
+Mi nombre es ${nombre}
+
+Correo: ${correo}
+
+Necesito información:
+
+${mensaje}`;
+
+window.open(
+
+"https://wa.me/573164058253?text="+encodeURIComponent(texto),
+
+"_blank"
+
+);
+
+});
+
+}
+
+// Scroll suave
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+
+anchor.addEventListener("click",function(e){
+
+e.preventDefault();
+
+document.querySelector(this.getAttribute("href")).scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+});
+
+});
+
+// Año automático
+
+const footer=document.querySelector("footer p");
+
+if(footer){
+
+footer.innerHTML=`© ${new Date().getFullYear()} JAC Digital | Tecnología que impulsa negocios.`;
+
+}.show{
+
+opacity:1 !important;
+
+transform:translateY(0) !important;
+
+}
+
+.service-card,
+.portfolio-card,
+.plan-card{
+
+opacity:0;
+
+transform:translateY(40px);
+
+transition:.8s;
+
+}
+
+.floating-whatsapp{
+
+position:fixed;
+
+right:20px;
+
+bottom:20px;
+
+width:65px;
+
+height:65px;
+
+background:#25D366;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:30px;
+
+text-decoration:none;
+
+box-shadow:0 10px 25px rgba(0,0,0,.35);
+
+z-index:9999;
+
+transition:.3s;
+
+}
+
+.floating-whatsapp:hover{
+
+transform:scale(1.1);
+
+}
