@@ -1,0 +1,5 @@
+User-agent: *
+
+Allow: /
+
+Sitemap: https://jac-digital.netlify.app/sitemap.xml
